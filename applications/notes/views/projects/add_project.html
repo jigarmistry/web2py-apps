@@ -1,0 +1,30 @@
+{{extend 'layout.html'}}
+<form action="{{=URL('projects','add_project')}}">
+    
+<a href="{{=URL('projects', 'add_project', vars=dict(type='easy'))}}" class="btn btn-primary">
+  Select Project Folder
+</a>
+    <br><br>
+    {{if dirname:}}
+
+    Project Location : <input type="text" value="{{=dirname}}" name="path" required readonly><br>
+    Enter Project Name : <input type="text" name="name" required>
+    <br><br>
+    <input type="submit">
+    {{pass}}
+</form>
+{{if ok=="ok":}}
+Inserted
+{{pass}}
+
+{{if ok=="name":}}
+Name already in DB.
+{{pass}}
+
+{{if ok=="path":}}
+Path already in DB.
+{{pass}}
+
+{{if ok=="ip":}}
+Not valid client ip address for project
+{{pass}}

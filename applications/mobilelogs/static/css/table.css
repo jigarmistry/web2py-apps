@@ -1,0 +1,52 @@
+.zui-table {
+    border: solid 1px #DDEEEE;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font: normal 13px Arial, sans-serif;
+}
+.zui-table thead th {
+    background-color: #DDEFEF;
+    border: solid 1px #DDEEEE;
+    color: #336B6B;
+    padding: 10px;
+    text-align: left;
+    text-shadow: 1px 1px 1px #fff;
+}
+.zui-table tbody td {
+    border: solid 1px #DDEEEE;
+    color: #333;
+    padding: 10px;
+    text-shadow: 1px 1px 1px #fff;
+}
+.zui-table-horizontal tbody td {
+    border-left: none;
+    border-right: none;
+}
+@media (max-width: 991px) {
+    .zui-table-responsive, .zui-table-responsive thead, .zui-table-responsive thead tr, .zui-table-responsive thead th, .zui-table-responsive tbody, .zui-table-responsive tbody tr, .zui-table-responsive tbody td {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+    }
+    .zui-table-responsive {
+        border-color: #BBDFDF;
+    }
+    .zui-table-responsive thead th {
+        border-color: #BBDFDF;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+    }
+    .zui-table-responsive tbody tr {
+        border-bottom: solid 1px #BBDFDF;
+    }
+    .zui-table-responsive tbody td {
+        border-top: none;
+        border-color: #EEF7F7;
+    }
+    .zui-table-responsive tbody tr:last-child, .zui-table-responsive tbody td:last-child {
+        border-bottom: none;
+    }
+}

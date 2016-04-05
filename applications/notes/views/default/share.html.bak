@@ -1,0 +1,9 @@
+{{extend 'layout.html'}}
+{{for i in html_list:}}
+{{for j,k in i.iteritems():}}
+<pre><b>{{=j}}</b>
+{{=k}}</pre><br><br>
+{{pass}}
+{{pass}}
+    
+{{=BEAUTIFY(response._vars)}}

@@ -1,0 +1,43 @@
+{{extend 'layout.html'}}
+ 
+<form enctype="multipart/form-data" action="{{URL()}}" method="post">
+    {{form2 = db().select(db.share_users.ALL)}}
+    Select User : <select name="user" onchange="ajax('maker', ['year'], 'maker_name');
+                                  ajax('two', ['month','year'], 'day');">
+        {{for i in form2:}}
+        <option value="{{=i['ipaddress']}}">{{=i['name']}}</option>
+        {{pass}}
+        
+    </select>
+    <select name='year' id="year"
+        onchange="jQuery('#maker_name').empty();
+        ajax('maker', ['year'], 'maker_name');">
+        <option>Select Year</option>
+        {{for i in dict_test:}}
+            <option value="{{=i}}">
+            {{=i}}
+            </option>
+        {{pass}}
+    </select>
+
+    <select id='maker_name' name='month' onchange="jQuery('#day').empty();
+        ajax('two', ['month','year'], 'day');" >
+        <option>Select Month</option>
+        {{for maker in makers:}}
+            <option value="{{=maker}}">
+            {{=maker}}</option>
+        {{pass}}
+    </select>
+    
+    <select id='day' name='day' onchange="
+        ajax('share_notes', ['month','year','day','user'], 'show_list');" >
+        <option>Select Day</option>
+        {{for maker in form1:}}
+            <option value="{{=maker}}">
+            {{=maker}}</option>
+        {{pass}}
+    </select>
+</form>
+<div id="show_list">
+{{=link}}
+</div>

@@ -1,0 +1,33 @@
+{{response.files.append(URL('static','css/table.css'))}}
+{{extend 'layout.html'}}
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+{{T.force('gj')}}
+
+<!-- <input id="gj" type="button" value="Gujarati" onclick="changeLang('gj');" />
+<input id="english" type="button" value="English" onclick="changeLang('default');" /><br><br> -->
+
+<input type="text" id="search-criteria" placeholder="Search Date Here" /><br><br>
+
+{{for date,data in dict_data.iteritems():}}
+
+<span style="color:gray;" ><label>{{=date[8:10]}} - {{=dict_months[date[5:7]]}} - {{=date[0:4]}}</label></span><br><br>
+<table class="zui-table zui-table-highlight-all">
+   <thead><tr><th>Contact Name</th><th>Contact Number</th><th>Type</th><th>Time</th><th>Duration</th></tr></thead>
+    <tbody>
+        {{for log in data:}}
+            {{
+            if log[2] == 'Missed':
+                style = "color:red"
+            elif log[2] == 'Incoming':
+                style = "color:blue"
+            else:
+                style = "color:green"
+            }}
+            {{pass}}
+            <tr><td>{{=T(log[0])}}</td><td>{{=T(log[1])}}</td><td style={{=style}} >{{=T(log[2])}}</td><td>{{=T(log[4][11:])}}</td><td>{{=T(log[5])}}</td></tr>
+        {{pass}}
+    </tbody>
+</table>
+<br>
+{{pass}}

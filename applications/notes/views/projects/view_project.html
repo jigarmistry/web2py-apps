@@ -1,0 +1,21 @@
+{{extend 'layout.html'}}
+
+{{form2 = db(db.projects.username==auth.user_id).select(db.projects.ALL)}}
+    <select name="pname" onchange="ajax('get_filepaths', ['pname'], 'show');">
+        <option value="Select Project">Select Project</option>
+        {{for i in form2:}}
+        <option value="{{=i['location_path']}}">{{=i['name']}}</option>
+        {{pass}}
+    </select>
+
+<div id="show">
+    {{for i,j in file_paths.iteritems():}}
+    {{test = i.rsplit('/', 1)}}
+    {{="<b><font size=3px>"+test[1]+"</font></b><br>"}}
+       {{= "&thinsp;&thinsp;&thinsp;<b>Path</b> : "+test[0]+"<br>"}}
+        {{for m,n in j.iteritems():}}
+            {{"&thinsp;&thinsp;&thinsp;<b>"+m+"</b> : "+n+"<br>" }}
+    <br>
+    {{pass}}
+    {{pass}}
+</div>

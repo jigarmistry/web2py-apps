@@ -1,0 +1,34 @@
+{{extend 'layout.html'}}
+ 
+<form enctype="multipart/form-data" action="{{URL()}}" method="post">
+    <select name='name' 
+        onchange="jQuery('#maker_name').empty();
+        ajax('maker', ['name'], 'maker_name');">
+        <option>Select Year</option>
+        {{for i in dict_test:}}
+            <option value="{{=i}}"
+                >
+            {{=i}}
+            </option>
+        {{pass}}
+    </select>
+
+    <select id='maker_name' name='month' onchange="
+        ajax('show', ['month'], 'show_list');" >
+        <option>Select Month</option>
+        {{for maker in makers:}}
+            <option value="{{=maker}}">
+            {{=maker}}</option>
+        {{pass}}
+    </select>
+</form>
+<div id="show_list">
+    
+
+{{for i in html_list:}}
+{{for j,k in i.iteritems():}}
+<pre><b>{{=j}}</b>
+{{=k}}</pre><br><br>
+{{pass}}
+{{pass}}
+    </div>
