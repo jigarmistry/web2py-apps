@@ -1,0 +1,21 @@
+[2016-04-07 13:28:24] START
+[2016-04-07 13:31:40] EDIT QuizManager/models/db.py: 8
+[2016-04-07 13:31:56] EDIT QuizManager/models/db.py: 0
+[2016-04-07 13:31:57] EDIT QuizManager/models/db.py: 0
+[2016-04-07 13:33:02] EDIT QuizManager/controllers/default.py: 3
+[2016-04-07 13:33:12] EDIT QuizManager/controllers/default.py: 0
+[2016-04-07 13:33:24] EDIT QuizManager/controllers/default.py: -1
+[2016-04-07 13:33:26] EDIT QuizManager/controllers/default.py: 0
+[2016-04-07 13:33:41] CREATE default/quiz.html: 0
+[2016-04-07 13:33:49] EDIT QuizManager/views/default/quiz.html: -1
+[2016-04-07 13:34:24] EDIT QuizManager/models/db.py: 0
+[2016-04-07 13:37:33] EDIT QuizManager/controllers/default.py: 3
+[2016-04-07 13:38:10] EDIT QuizManager/controllers/default.py: 0
+[2016-04-07 13:40:42] EDIT QuizManager/controllers/default.py: 0
+[2016-04-07 13:41:37] EDIT QuizManager/models/menu.py: 0
+[2016-04-07 14:39:44] CREATE quizapi.json: 0
+[2016-04-07 14:39:54] EDIT QuizManager/views/quizapi.json: 0
+[2016-04-07 14:42:06] CREATE default/quizapi.html: 0
+[2016-04-07 14:42:09] EDIT QuizManager/views/default/quizapi.html: -1
+[2016-04-07 14:47:19] CREATE default/quizapi.json: 0
+[2016-04-07 14:50:47] DELETE QuizManager/views/quizapi.json: -1

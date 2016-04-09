@@ -53,3 +53,12 @@ CREATE TABLE auth_cas(
     renew CHAR(1)
 );
 success!
+timestamp: 2016-04-05T15:07:49.809930
+CREATE TABLE mylogfile(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    mobilelog CHAR(512)
+);
+success!
+timestamp: 2016-04-05T15:24:17.027752
+ALTER TABLE mylogfile ADD uploaddate DATE;
+success!

@@ -16,8 +16,18 @@ def index():
     if you need a simple wiki simply replace the two lines below with:
     return auth.wiki()
     """
-    response.flash = T("Hello World")
-    return "Hello World !"
+    return redirect("logs")
+
+def upload_logfile():
+    grid = SQLFORM.grid(db.mylogfile,user_signature=False,oncreate=rename_filename)
+    return locals()
+
+def rename_filename(form):
+    import os
+    print (form.vars.mobilelog)
+    csvfile = os.path.join(request.folder, 'private', form.vars.mobilelog)
+    print (csvfile)
+    os.rename(csvfile,os.path.join(request.folder, 'private', "MobileLog2.csv"))
 
 def logs():
     import os

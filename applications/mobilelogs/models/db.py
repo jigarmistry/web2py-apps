@@ -92,3 +92,8 @@ auth.settings.actions_disabled = ['register']
 
 ## after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)
+
+import os
+db.define_table("mylogfile",
+               Field('mobilelog', 'upload', uploadfolder=os.path.join(request.folder, 'private')),
+               Field('uploaddate','date',requires=IS_NOT_EMPTY()))
