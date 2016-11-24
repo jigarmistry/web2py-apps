@@ -1,0 +1,27 @@
+{{extend 'layout.html'}}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+        </tr>
+    </thead>
+    <tbody>
+    {{for name in names:}}
+        <tr>
+            <td>{{=name.id}}</td>
+            <td>{{=name.firstname}}</td>
+            <td>{{=name.lastname}}</td>
+            <td>
+                <button class="btn"><i class="icon-edit"></i></button>
+            </td>
+            <td>
+                <button class="btn"><i class="icon-trash"></i></button>
+            </td>
+        </tr>
+    {{pass}}
+    </tbody>
+</table>
+<a href={{=URL(vars={'page':int(request.vars.page)-1})}}>Previous</a> |
+<a href={{=URL(vars={'page':int(request.vars.page)+1})}}>Next</a>

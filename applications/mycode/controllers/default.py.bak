@@ -1,0 +1,104 @@
+# -*- coding: utf-8 -*-
+# this file is released under public domain and you can use without limitations
+
+# -------------------------------------------------------------------------
+# This is a sample controller
+# - index is the default action of any application
+# - user is required for authentication and authorization
+# - download is for downloading files uploaded in the db (does streaming)
+# -------------------------------------------------------------------------
+
+
+def index():
+    """
+    example action using the internationalization operator T and flash
+    rendered by views/default/index.html or views/generic.html
+
+    if you need a simple wiki simply replace the two lines below with:
+    return auth.wiki()
+    """
+    redirect('lists')
+
+def lists():
+    grid = SQLFORM.smartgrid(db.fewlists,user_signature=False)
+
+    addform = SQLFORM(db.fnames)
+    if addform.process().accepted:
+       response.flash = 'form accepted'
+    elif addform.errors:
+       response.flash = 'form has errors'
+
+    if  len(request.args)>1 and request.args[-2]=='new' and grid.create_form:
+        grid = SQLFORM.smartgrid(db.fewlists,user_signature=False)
+        html = grid[2]
+        d = html.elements('label#fewlists_name__label',)
+        #d[0][0] = A('', XML('<b>Name</b>'), _href='#')
+        d[0][0] = TAG("<a href='' data-toggle='modal' data-target='#addNameModal'>Name</a>")
+        grid[2] = html
+    return locals()
+
+def name_selector():
+    if not request.vars.name: return ''
+    names = {"Hi":["Jtype1","Jtype2"],"Mistry":["Mtype1","Mtype2"]}
+
+    selname = request.vars.name
+    if selname not in names.keys():
+        return ''
+    selected = names[selname]
+
+    return SELECT(*[OPTION(k,_class='generic-widget form-control', _id='fewlists_ntype') for k in selected])
+
+def names():
+    if not request.vars.page:
+		redirect(URL(vars={'page':1}))
+    else:
+		page = int(request.vars.page)
+    start = (page-1)*10
+    end = page*10
+    names = db(db.fnames).select(limitby=(start,end))
+    return dict(names=names)
+
+def addname():
+    form = SQLFORM(db.fnames)
+    if form.process().accepted:
+       response.flash = 'form accepted'
+    elif form.errors:
+       response.flash = 'form has errors'
+    return locals()
+
+def user():
+    """
+    exposes:
+    http://..../[app]/default/user/login
+    http://..../[app]/default/user/logout
+    http://..../[app]/default/user/register
+    http://..../[app]/default/user/profile
+    http://..../[app]/default/user/retrieve_password
+    http://..../[app]/default/user/change_password
+    http://..../[app]/default/user/bulk_register
+    use @auth.requires_login()
+        @auth.requires_membership('group name')
+        @auth.requires_permission('read','table name',record_id)
+    to decorate functions that need access control
+    also notice there is http://..../[app]/appadmin/manage/auth to allow administrator to manage users
+    """
+    return dict(form=auth())
+
+
+@cache.action()
+def download():
+    """
+    allows downloading of uploaded files
+    http://..../[app]/default/download/[filename]
+    """
+    return response.download(request, db)
+
+
+def call():
+    """
+    exposes services. for example:
+    http://..../[app]/default/call/jsonrpc
+    decorate with @services.jsonrpc the functions to expose
+    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv
+    """
+    return service()

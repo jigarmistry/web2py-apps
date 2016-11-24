@@ -1,0 +1,26 @@
+{{extend 'layout.html'}}
+{{=grid}}
+
+<div class="modal fade" id="addNameModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+           <button data-dismiss="modal" class="glyphicon glyphicon-remove close"></button>
+          <h4 class="modal-title">Add Name</h4>
+        </div>
+        <div class="modal-body" id="add-name-body">
+          {{=addform}}
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+<script>
+    jQuery(document).ready(function(){
+        $('#fewlists_name').on('change', function() {
+            ajax('{{=URL('default', 'name_selector')}}', ['name'], 'fewlists_ntype')
+        });
+    });
+</script>
