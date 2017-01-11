@@ -1,0 +1,29 @@
+{{extend 'layout.html'}}
+
+<form>
+  <div class="form-group">
+    <label for="ptoken">Token</label>
+    <input type="text" class="form-control" id="ptoken" aria-describedby="tokenHelp" placeholder="Project Token">
+    <small id="tokenHelp" class="form-text text-muted">Generate project token using Generate button</small>
+  </div>
+  <button id="generate" class="btn btn-primary">Generate Token</button>
+  <button id="save" class="btn btn-primary">Save</button>
+  <div class="target"></div>
+</form>
+
+<script type="text/javascript">
+    $(function(){
+        $("input").prop('disabled', true);
+        $("#generate").click(function(){
+            $("#ptoken").val("45634hfjkdshfk");
+            return false;
+        });
+        $("#save").click(function(){
+            var token = $("#ptoken").val();
+            if(!token){
+               alert("Please generate the token");
+            }
+            ajax('{{=URL('default', "save_token")}}', ['ptoken'])
+        });
+    });
+</script>

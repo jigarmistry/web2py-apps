@@ -1,0 +1,263 @@
+timestamp: 2016-02-24T09:18:10.218407
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2016-02-24T09:18:10.246349
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2016-02-24T09:18:10.249809
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2016-02-24T09:18:10.253424
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  ,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2016-02-24T09:18:10.257626
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2016-02-24T09:18:10.260675
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2017-01-10T14:03:10.131999
+CREATE TABLE tokens(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ptoken CHAR(512)
+);
+success!
+timestamp: 2017-01-10T14:07:09.960510
+ALTER TABLE tokens ADD modified_on TIMESTAMP;
+success!
+timestamp: 2017-01-10T14:08:03.448453
+CREATE TABLE projects(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    department CHAR(512),
+    pactive CHAR(1),
+    ptoken CHAR(512),
+    modified_on TIMESTAMP
+);
+success!
+success!
+timestamp: 2017-01-10T14:55:42.842670
+CREATE TABLE mlogs(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    info CHAR(512),
+    in_value CHAR(512),
+    object_detail CHAR(512),
+    file_name CHAR(512),
+    method_name CHAR(512),
+    modified_on TIMESTAMP
+);
+success!
+timestamp: 2017-01-10T14:56:23.175233
+ALTER TABLE mlogs ADD project INTEGER REFERENCES projects (id) ON DELETE CASCADE  ;
+success!
+timestamp: 2017-01-10T15:17:33.479159
+ALTER TABLE mlogs ADD in_exception CHAR(1);
+success!
+timestamp: 2017-01-10T15:20:34.859071
+ALTER TABLE projects ADD pdebug CHAR(1);
+success!
+timestamp: 2017-01-10T15:22:05.000610
+ALTER TABLE tokens ADD expried_on TIMESTAMP;
+success!
+success!
+timestamp: 2017-01-11T10:26:43.475480
+ALTER TABLE tokens ADD created_on TIMESTAMP;
+success!
+timestamp: 2017-01-11T10:26:43.533444
+ALTER TABLE projects ADD created_on TIMESTAMP;
+success!
+timestamp: 2017-01-11T10:26:43.549033
+ALTER TABLE mlogs ADD created_on TIMESTAMP;
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2017-01-11T10:42:17.478725
+ALTER TABLE tokens ADD expired_on TIMESTAMP;
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!

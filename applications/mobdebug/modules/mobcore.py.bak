@@ -1,0 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from gluon import *
+
+def check_token(token):
+    token_id = db(db.tokens.ptoken==vars.token).select(db.tokens.id).as_list()
+    if len(token_id) > 0:
+        token_project = db(db.projects.ptoken==token_id[0]["id"]).select(db.projects.id).as_list()
+        if len(token_project) > 0:
+            print(token_project)
